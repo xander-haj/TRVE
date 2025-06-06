@@ -1,0 +1,1769 @@
+        <main id="content-area" class="flex-1 p-8">
+            <section id="welcome-section" class="bg-gray-800/50 p-8 rounded-lg shadow-xl backdrop-blur-md border border-purple-500/30 prose prose-invert max-w-none">
+                <h3 class="text-3xl font-bold text-purple-300 mb-4">Welcome to LearnHub!</h3>
+                <p class="text-lg text-gray-300 mb-6">
+                    Your journey to mastering TypeScript, Vite, and React starts here. Select a lesson from the sidebar to begin.
+                    This platform is designed to provide you with comprehensive, enterprise-grade learning materials and interactive experiences.
+                </p>
+                <p class="text-gray-400">
+                    Explore modules, dive into lessons, and enhance your web development skills with cutting-edge technologies.
+                </p>
+            </section>
+
+            <article id="ts-intro" class="lesson-content hidden bg-gray-800/50 p-6 rounded-lg shadow-lg backdrop-blur-md mt-8 prose prose-invert max-w-none">
+                <h3 class="text-2xl font-semibold text-blue-300 mb-4">Lesson: Introduction to TypeScript</h3>
+                <p>TypeScript is a an open-source programming language developed and maintained by Microsoft. It is a strict syntactical superset of JavaScript and adds optional static typing to the language. This means you can write JavaScript code in TypeScript files, and TypeScript will compile it down to plain JavaScript that can run in any browser or Node.js environment.</p>
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Why Use TypeScript?</h4>
+                <ul>
+                    <li><strong>Static Typing:</strong> Catch errors early during development rather than at runtime. This leads to more robust and maintainable code.</li>
+                    <li><strong>Improved Code Quality and Understandability:</strong> Types make code easier to read and reason about, especially in large projects or teams.</li>
+                    <li><strong>Better Tooling:</strong> TypeScript enables rich code editing experiences, including autocompletion, refactoring, and advanced error checking in IDEs like VS Code.</li>
+                    <li><strong>Scalability:</strong> It helps manage large codebases by providing structure and preventing common JavaScript pitfalls.</li>
+                    <li><strong>Access to Modern JavaScript Features:</strong> TypeScript allows you to use the latest ECMAScript features and compiles them down to older JavaScript versions for broader compatibility.</li>
+                </ul>
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">TypeScript vs. JavaScript</h4>
+                <p>Think of TypeScript as JavaScript with "superpowers." Here's a simple comparison:</p>
+                <p><strong>JavaScript:</strong></p>
+                <pre><code class="language-javascript">function greet(person, date) {
+  console.log(`Hello ${person}, today is ${date}!`);
+}
+greet("Brendan"); // Output: Hello Brendan, today is undefined! (Error not caught)</code></pre>
+                <p><strong>TypeScript:</strong></p>
+                <pre><code class="language-typescript">function greetTS(person: string, date: Date) {
+  console.log(`Hello ${person}, today is ${date.toDateString()}!`);
+}
+// greetTS("Brendan"); // Error: Expected 2 arguments, but got 1.
+greetTS("Brendan", new Date()); // Works as expected</code></pre>
+                <div class="collapsible-container my-4">
+                    <button class="collapsible-trigger bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-t-md w-full text-left flex justify-between items-center transition-colors duration-150">
+                        <span class="text-lg">Key Takeaway</span>
+                        <i data-lucide="chevron-down" class="collapsible-icon w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="collapsible-content hidden bg-gray-700/60 p-4 rounded-b-md border border-t-0 border-gray-600">
+                        <p>TypeScript enhances JavaScript by adding types, which helps in building more reliable and scalable applications. It doesn't replace JavaScript but builds upon it.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article id="ts-setup" class="lesson-content hidden bg-gray-800/50 p-6 rounded-lg shadow-lg backdrop-blur-md mt-8 prose prose-invert max-w-none">
+                <h3 class="text-2xl font-semibold text-blue-300 mb-4">Lesson: Setting up TypeScript Environment</h3>
+                <p>To start using TypeScript, you need to install it and set up a basic project structure. TypeScript is typically installed as an npm package.</p>
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Prerequisites</h4>
+                <ul>
+                    <li><strong>Node.js and npm:</strong> TypeScript is distributed via npm (Node Package Manager), which comes with Node.js. Ensure you have Node.js installed. You can download it from <a href="https://nodejs.org/" target="_blank" class="text-purple-400 hover:text-purple-300">nodejs.org</a>.</li>
+                </ul>
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Installing TypeScript</h4>
+                <p>You can install TypeScript globally or locally in your project. For most projects, local installation is preferred as it allows different projects to use different TypeScript versions.</p>
+                <p><strong>Global Installation:</strong></p>
+                <pre><code class="language-bash">npm install -g typescript</code></pre>
+                <p>This makes the TypeScript compiler (<code>tsc</code>) available anywhere on your system.</p>
+                <p><strong>Local Installation (Recommended):</strong></p>
+                <p>Navigate to your project directory and run:</p>
+                <pre><code class="language-bash">npm init -y  # Initializes a new npm project (creates package.json)
+npm install typescript --save-dev # Installs TypeScript as a dev dependency</code></pre>
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Your First TypeScript File</h4>
+                <ol>
+                    <li>Create a new file, for example, <code>hello.ts</code>. (Note the <code>.ts</code> extension).</li>
+                    <li>Write some TypeScript code:
+                        <pre><code class="language-typescript">// hello.ts
+function sayHello(name: string): string {
+    return `Hello, ${name}!`;
+}
+console.log(sayHello("TypeScript"));</code></pre>
+                    </li>
+                    <li>Compile the TypeScript file to JavaScript using the TypeScript Compiler (<code>tsc</code>):
+                        <pre><code class="language-bash">npx tsc hello.ts  # If installed locally
+# OR
+tsc hello.ts      # If installed globally</code></pre>
+                        This will generate a <code>hello.js</code> file.
+                    </li>
+                    <li>Run the JavaScript file:
+                        <pre><code class="language-bash">node hello.js</code></pre>
+                        You should see "Hello, TypeScript!" in your console.
+                    </li>
+                </ol>
+                <div class="collapsible-container my-4">
+                    <button class="collapsible-trigger bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-t-md w-full text-left flex justify-between items-center transition-colors duration-150">
+                        <span class="text-lg">What is <code>tsconfig.json</code>?</span>
+                        <i data-lucide="chevron-down" class="collapsible-icon w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="collapsible-content hidden bg-gray-700/60 p-4 rounded-b-md border border-t-0 border-gray-600">
+                        <p>For larger projects, you'll use a <code>tsconfig.json</code> file to manage compiler options. You can generate one using <code>npx tsc --init</code>. This file tells the TypeScript compiler how to compile your project (e.g., target JavaScript version, module system, strictness options). We'll cover this in a later lesson.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article id="ts-basic-types" class="lesson-content hidden bg-gray-800/50 p-6 rounded-lg shadow-lg backdrop-blur-md mt-8 prose prose-invert max-w-none">
+                <h3 class="text-2xl font-semibold text-blue-300 mb-4">Lesson: Basic Types</h3>
+                <p>TypeScript extends JavaScript by adding types. Let's explore the fundamental types you'll encounter.</p>
+                
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Boolean</h4>
+                <p>The simplest datatype, representing <code>true</code> or <code>false</code> values.</p>
+                <pre><code class="language-typescript">let isLoggedIn: boolean = false;
+isLoggedIn = true;</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Number</h4>
+                <p>As in JavaScript, all numbers in TypeScript are floating-point values. TypeScript supports decimal, hexadecimal, binary, and octal literals.</p>
+                <pre><code class="language-typescript">let decimal: number = 6;
+let hex: number = 0xf00d;
+let binary: number = 0b1010;
+let octal: number = 0o744;</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">String</h4>
+                <p>Represents textual data, using single quotes (<code>'</code>) or double quotes (<code>"</code>). Template strings (backticks <code>`</code>) are also supported for multi-line strings and embedded expressions.</p>
+                <pre><code class="language-typescript">let color: string = "blue";
+color = 'red';
+
+let fullName: string = `Bob Bobbington`;
+let age: number = 37;
+let sentence: string = `Hello, my name is ${fullName}.
+
+I'll be ${age + 1} years old next month.`;</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Array</h4>
+                <p>TypeScript allows you to work with arrays of values. You can define array types in two ways:</p>
+                <ol>
+                    <li>Using the type of the elements followed by <code>[]</code>:</li>
+                    <pre><code class="language-typescript">let list: number[] = [1, 2, 3];</code></pre>
+                    <li>Using a generic array type, <code>Array&lt;elemType&gt;</code>:</li>
+                    <pre><code class="language-typescript">let names: Array&lt;string&gt; = ["Alice", "Bob", "Charlie"];</code></pre>
+                </ol>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Tuple</h4>
+                <p>Tuples allow you to express an array with a fixed number of elements whose types are known, but need not be the same.</p>
+                <pre><code class="language-typescript">// Declare a tuple type
+let x: [string, number];
+// Initialize it
+x = ["hello", 10]; // OK
+// Initialize it incorrectly
+// x = [10, "hello"]; // Error</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Enum</h4>
+                <p>Enums allow us to define a set of named constants. Using enums can make it easier to document intent, or create a set of distinct cases.</p>
+                <pre><code class="language-typescript">enum Color {Red, Green, Blue}
+let c: Color = Color.Green; // c is 1 (by default, enums start numbering at 0)
+
+enum HttpStatus {OK = 200, NotFound = 404, InternalServerError = 500}
+let status: HttpStatus = HttpStatus.OK; // status is 200</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Any</h4>
+                <p>Sometimes, you might need to describe the type of variables that you do not know when you are writing an application. The <code>any</code> type is a powerful way to work with existing JavaScript, allowing you to gradually opt-in and opt-out of type checking.</p>
+                <pre><code class="language-typescript">let notSure: any = 4;
+notSure = "maybe a string instead";
+notSure = false; // okay, definitely a boolean</code></pre>
+                <p>Using <code>any</code> defeats the purpose of TypeScript's type safety, so use it sparingly.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Unknown</h4>
+                <p>Similar to <code>any</code>, but safer. You can't perform operations on an <code>unknown</code> type without first asserting or narrowing it to a more specific type.</p>
+                <pre><code class="language-typescript">let maybe: unknown;
+maybe = "hello";
+// console.log(maybe.length); // Error: Object is of type 'unknown'.
+if (typeof maybe === "string") {
+    console.log(maybe.length); // OK
+}</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Void</h4>
+                <p><code>void</code> is a little like the opposite of <code>any</code>: the absence of having any type at all. You may commonly see this as the return type of functions that do not return a value.</p>
+                <pre><code class="language-typescript">function warnUser(): void {
+    console.log("This is my warning message");
+}</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Null and Undefined</h4>
+                <p>In TypeScript, both <code>undefined</code> and <code>null</code> actually have their own types named <code>undefined</code> and <code>null</code> respectively. By default, <code>null</code> and <code>undefined</code> are subtypes of all other types. This means you can assign <code>null</code> and <code>undefined</code> to something like <code>number</code>. However, when using the <code>--strictNullChecks</code> flag, <code>null</code> and <code>undefined</code> are only assignable to <code>any</code>, <code>unknown</code> and their respective types.</p>
+                <pre><code class="language-typescript">let u: undefined = undefined;
+let n: null = null;</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Never</h4>
+                <p>The <code>never</code> type represents the type of values that never occur. For instance, <code>never</code> is the return type for a function expression or an arrow function expression that always throws an exception or one that never returns.</p>
+                <pre><code class="language-typescript">function error(message: string): never {
+    throw new Error(message);
+}
+
+function infiniteLoop(): never {
+    while (true) {}
+}</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Object</h4>
+                <p><code>object</code> is a type that represents the non-primitive type, i.e. anything that is not <code>number</code>, <code>string</code>, <code>boolean</code>, <code>bigint</code>, <code>symbol</code>, <code>null</code>, or <code>undefined</code>.</p>
+                <pre><code class="language-typescript">declare function create(o: object | null): void;
+create({ prop: 0 }); // OK
+create(null); // OK
+// create(42); // Error
+// create("string"); // Error</code></pre>
+
+                <div class="collapsible-container my-4">
+                    <button class="collapsible-trigger bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-t-md w-full text-left flex justify-between items-center transition-colors duration-150">
+                        <span class="text-lg">Type Inference</span>
+                        <i data-lucide="chevron-down" class="collapsible-icon w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="collapsible-content hidden bg-gray-700/60 p-4 rounded-b-md border border-t-0 border-gray-600">
+                        <p>Often, TypeScript can infer the type of a variable from its initial value. For example:</p>
+                        <pre><code class="language-typescript">let message = "Hello, world!"; // TypeScript infers 'string'
+// message = 10; // Error: Type 'number' is not assignable to type 'string'.</code></pre>
+                        <p>While explicit type annotations are good for clarity, type inference can make your code less verbose where types are obvious.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article id="ts-interfaces" class="lesson-content hidden bg-gray-800/50 p-6 rounded-lg shadow-lg backdrop-blur-md mt-8 prose prose-invert max-w-none">
+                <h3 class="text-2xl font-semibold text-blue-300 mb-4">Lesson: Interfaces</h3>
+                <p>Interfaces are a powerful way to define contracts within your code as well as contracts with code outside of your project. They are one of TypeScript's core concepts and are used to define the "shape" of objects.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Our First Interface</h4>
+                <p>Let's define a simple interface that describes an object with a <code>label</code> property of type <code>string</code>.</p>
+                <pre><code class="language-typescript">interface LabeledValue {
+  label: string;
+}
+
+function printLabel(labeledObj: LabeledValue) {
+  console.log(labeledObj.label);
+}
+
+let myObj = { size: 10, label: "Size 10 Object" };
+printLabel(myObj); // Works because myObj has a 'label' property of type string.</code></pre>
+                <p>The type checker only cares that the object passed to <code>printLabel</code> has the required properties and that those properties are of the correct type. It doesn't matter if the object has additional properties.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Optional Properties</h4>
+                <p>Not all properties of an interface may be required. You can mark properties as optional by adding a <code>?</code> at the end of their name.</p>
+                <pre><code class="language-typescript">interface SquareConfig {
+  color?: string;
+  width?: number;
+}
+
+function createSquare(config: SquareConfig): { color: string; area: number } {
+  let newSquare = { color: "white", area: 100 };
+  if (config.color) {
+    newSquare.color = config.color;
+  }
+  if (config.width) {
+    newSquare.area = config.width * config.width;
+  }
+  return newSquare;
+}
+
+let mySquare1 = createSquare({ color: "black" });
+let mySquare2 = createSquare({ width: 50, color: "blue" });
+let mySquare3 = createSquare({});</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Readonly Properties</h4>
+                <p>Some properties should only be modifiable when an object is first created. You can specify this by putting <code>readonly</code> before the name of the property:</p>
+                <pre><code class="language-typescript">interface Point {
+  readonly x: number;
+  readonly y: number;
+}
+
+let p1: Point = { x: 10, y: 20 };
+// p1.x = 5; // Error! Cannot assign to 'x' because it is a read-only property.</code></pre>
+                <p>TypeScript also provides a <code>ReadonlyArray&lt;T&gt;</code> type that is the same as <code>Array&lt;T&gt;</code> with all mutating methods removed, so you can make sure you don’t change your arrays after creation:</p>
+                <pre><code class="language-typescript">let a: number[] = [1, 2, 3, 4];
+let ro: ReadonlyArray&lt;number&gt; = a;
+// ro[0] = 12; // Error!
+// ro.push(5); // Error!
+// ro.length = 100; // Error!
+// a = ro; // Error! Assigning ReadonlyArray back to mutable array is disallowed unless you use a type assertion.
+a = ro as number[]; // OK with type assertion</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Excess Property Checks</h4>
+                <p>When passing object literals directly to a function or assigning to a variable with an interface type, TypeScript performs "excess property checking." If an object literal has any properties that the target type doesn’t have, you’ll get an error.</p>
+                <pre><code class="language-typescript">// interface SquareConfig defined above
+// let mySquare4 = createSquare({ colour: "red", width: 100 }); // Error: Object literal may only specify known properties, and 'colour' does not exist in type 'SquareConfig'. Did you mean to write 'color'?</code></pre>
+                <p>There are ways around this, like type assertions or adding a string index signature if appropriate.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Function Types</h4>
+                <p>Interfaces can describe function types. This is useful for defining the signature of a function.</p>
+                <pre><code class="language-typescript">interface SearchFunc {
+  (source: string, subString: string): boolean;
+}
+
+let mySearch: SearchFunc;
+mySearch = function(src, sub) { // Parameter names can be different
+  let result = src.search(sub);
+  return result > -1;
+}
+// let anotherSearch: SearchFunc = function(source: string, sub: string, extra: number) { /* Error: too many params */ }</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Indexable Types</h4>
+                <p>Interfaces can describe types that we can "index into" like <code>a[10]</code>, or <code>ageMap["daniel"]</code>. Indexable types have an <em>index signature</em> that describes the types we can use to index into the object, along with the corresponding return types when indexing.</p>
+                <pre><code class="language-typescript">interface StringArray {
+  [index: number]: string;
+}
+let myArray: StringArray = ["Bob", "Fred"];
+let first = myArray[0]; // Bob
+
+interface NumberDictionary {
+  [index: string]: number;
+  length: number;    // ok, length is a number
+  // name: string;   // error, the type of 'name' is not a subtype of the numeric index type
+}</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Class Types (Implementing an interface)</h4>
+                <p>Interfaces can be implemented by classes. This enforces that the class meets the contract defined by the interface.</p>
+                <pre><code class="language-typescript">interface ClockInterface {
+  currentTime: Date;
+  setTime(d: Date): void;
+}
+
+class Clock implements ClockInterface {
+  currentTime: Date = new Date();
+  setTime(d: Date) {
+    this.currentTime = d;
+  }
+  constructor(h: number, m: number) { }
+}</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Extending Interfaces</h4>
+                <p>Interfaces can extend other interfaces, allowing you to copy members from one interface to another, which gives you a bit of flexibility in how you separate your interfaces into reusable components.</p>
+                <pre><code class="language-typescript">interface Shape {
+  color: string;
+}
+
+interface PenStroke {
+  penWidth: number;
+}
+
+interface Square extends Shape, PenStroke { // Can extend multiple interfaces
+  sideLength: number;
+}
+
+let square = {} as Square; // Type assertion for simplicity
+square.color = "blue";
+square.sideLength = 10;
+square.penWidth = 5.0;</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Hybrid Types</h4>
+                <p>An interface can describe an object that acts as both a function and an object, with additional properties.</p>
+                <pre><code class="language-typescript">interface Counter {
+  (start: number): string; // Call signature
+  interval: number;
+  reset(): void;
+}
+
+function getCounter(): Counter {
+  let counter = function (start: number) { } as Counter;
+  counter.interval = 123;
+  counter.reset = function () { };
+  return counter;
+}
+
+let c = getCounter();
+c(10);
+c.reset();
+c.interval = 5.0;</code></pre>
+
+                <div class="collapsible-container my-4">
+                    <button class="collapsible-trigger bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-t-md w-full text-left flex justify-between items-center transition-colors duration-150">
+                        <span class="text-lg">Interfaces vs. Type Aliases</span>
+                        <i data-lucide="chevron-down" class="collapsible-icon w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="collapsible-content hidden bg-gray-700/60 p-4 rounded-b-md border border-t-0 border-gray-600">
+                        <p>Type aliases (<code>type MyType = ...</code>) can also be used to name object types and are similar to interfaces. However, a key difference is that interfaces are "open" and can be merged (declaration merging), while type aliases are "closed" and cannot. Generally, use interfaces for defining the shape of objects or class contracts, and type aliases for naming primitives, unions, tuples, or more complex utility types.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article id="ts-classes" class="lesson-content hidden bg-gray-800/50 p-6 rounded-lg shadow-lg backdrop-blur-md mt-8 prose prose-invert max-w-none">
+                <h3 class="text-2xl font-semibold text-blue-300 mb-4">Lesson: Classes</h3>
+                <p>TypeScript offers full support for the <code>class</code> keyword introduced in ES6, along with additions like member visibility and abstract classes.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Basic Class Definition</h4>
+                <pre><code class="language-typescript">class Greeter {
+  greeting: string;
+
+  constructor(message: string) {
+    this.greeting = message;
+  }
+
+  greet() {
+    return "Hello, " + this.greeting;
+  }
+}
+
+let greeter = new Greeter("world");
+console.log(greeter.greet()); // Output: Hello, world</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Inheritance</h4>
+                <p>TypeScript allows you to use standard object-oriented patterns. One of the most fundamental patterns in class-based programming is being able to extend existing classes to create new ones using inheritance.</p>
+                <pre><code class="language-typescript">class Animal {
+  name: string;
+  constructor(theName: string) { this.name = theName; }
+  move(distanceInMeters: number = 0) {
+    console.log(`${this.name} moved ${distanceInMeters}m.`);
+  }
+}
+
+class Snake extends Animal {
+  constructor(name: string) { super(name); }
+  move(distanceInMeters = 5) {
+    console.log("Slithering...");
+    super.move(distanceInMeters);
+  }
+}
+
+class Horse extends Animal {
+  constructor(name: string) { super(name); }
+  move(distanceInMeters = 45) {
+    console.log("Galloping...");
+    super.move(distanceInMeters);
+  }
+}
+
+let sam = new Snake("Sammy the Python");
+let tom: Animal = new Horse("Tommy the Palomino"); // tom is typed as Animal but is a Horse instance
+
+sam.move();
+tom.move(34);</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Public, Private, and Protected Modifiers</h4>
+                <ul>
+                    <li><strong><code>public</code> (default):</strong> Members are accessible from anywhere.</li>
+                    <li><strong><code>private</code>:</strong> Members are only accessible within the defining class.</li>
+                    <li><strong><code>protected</code>:</strong> Members are accessible within the defining class and by instances of subclasses.</li>
+                </ul>
+                <pre><code class="language-typescript">class Person {
+  public name: string;
+  private age: number;
+  protected id: string;
+
+  public constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+    this.id = Math.random().toString(36).substring(7);
+  }
+
+  public getDetails() {
+    return `Name: ${this.name}, Age: ${this.age}`; // Can access private 'age' here
+  }
+}
+
+class Employee extends Person {
+  private department: string;
+
+  constructor(name: string, age: number, department: string) {
+    super(name, age);
+    this.department = department;
+  }
+
+  public getEmployeeDetails() {
+    // console.log(this.age); // Error: 'age' is private to Person
+    return `${super.getDetails()}, Department: ${this.department}, ID: ${this.id}`; // Can access protected 'id'
+  }
+}
+
+let john = new Person("John Doe", 30);
+console.log(john.name); // OK
+// console.log(john.age); // Error: 'age' is private
+// console.log(john.id); // Error: 'id' is protected
+
+let jane = new Employee("Jane Smith", 28, "Engineering");
+console.log(jane.getEmployeeDetails());</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Readonly Modifier</h4>
+                <p>You can make properties readonly by using the <code>readonly</code> keyword. Readonly properties must be initialized either at their declaration or in the constructor.</p>
+                <pre><code class="language-typescript">class Octopus {
+  readonly name: string;
+  readonly numberOfLegs: number = 8;
+
+  constructor(theName: string) {
+    this.name = theName;
+  }
+}
+let dad = new Octopus("Man with the 8 strong legs");
+// dad.name = "Man with the 3-piece suit"; // Error! name is readonly.</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Parameter Properties</h4>
+                <p>TypeScript offers a shorthand for declaring properties and initializing them from constructor parameters.</p>
+                <pre><code class="language-typescript">class User {
+  // 'readonly email: string;' and 'this.email = email;' are done automatically
+  constructor(readonly email: string, public username: string, private age: number) {}
+
+  displayInfo() {
+    console.log(`Email: ${this.email}, Username: ${this.username}, Age: (private)`);
+  }
+}
+let user = new User("test@example.com", "tester", 25);
+console.log(user.email); // test@example.com
+console.log(user.username); // tester
+// console.log(user.age); // Error: 'age' is private</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Accessors (Getters & Setters)</h4>
+                <p>TypeScript supports getters/setters as a way of intercepting accesses to an object member.</p>
+                <pre><code class="language-typescript">let passcode = "secret passcode";
+
+class SecureDocument {
+  private _fullName: string = "";
+
+  get fullName(): string {
+    return this._fullName;
+  }
+
+  set fullName(newName: string) {
+    if (passcode && passcode === "secret passcode") {
+      this._fullName = newName;
+    } else {
+      console.log("Error: Unauthorized update of fullName!");
+    }
+  }
+}
+
+let doc = new SecureDocument();
+doc.fullName = "John Doe"; // Uses the setter
+if (doc.fullName) { // Uses the getter
+  console.log(doc.fullName);
+}</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Static Properties and Methods</h4>
+                <p>Static members are visible on the class itself rather than on the instances. They are accessed using the class name.</p>
+                <pre><code class="language-typescript">class Grid {
+  static origin = { x: 0, y: 0 };
+  
+  calculateDistanceFromOrigin(point: { x: number; y: number; }) {
+    let xDist = (point.x - Grid.origin.x);
+    let yDist = (point.y - Grid.origin.y);
+    return Math.sqrt(xDist * xDist + yDist * yDist) / this.scale;
+  }
+  constructor(public scale: number) { }
+}
+
+let grid1 = new Grid(1.0);  // 1x scale
+let grid2 = new Grid(5.0);  // 5x scale
+
+console.log(Grid.origin); // { x: 0, y: 0 }
+console.log(grid1.calculateDistanceFromOrigin({ x: 10, y: 10 }));
+console.log(grid2.calculateDistanceFromOrigin({ x: 10, y: 10 }));</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Abstract Classes</h4>
+                <p>Abstract classes are base classes from which other classes may be derived. They may not be instantiated directly. Unlike an interface, an abstract class may contain implementation details for its members. The <code>abstract</code> keyword is used to define abstract classes as well as abstract methods within an abstract class.</p>
+                <pre><code class="language-typescript">abstract class Department {
+  constructor(public name: string) {}
+
+  printName(): void {
+    console.log("Department name: " + this.name);
+  }
+
+  abstract printMeeting(): void; // must be implemented in derived classes
+}
+
+class AccountingDepartment extends Department {
+  constructor() {
+    super("Accounting and Auditing"); // constructors in derived classes must call super()
+  }
+
+  printMeeting(): void {
+    console.log("The Accounting Department meets each Monday at 10am.");
+  }
+
+  generateReports(): void {
+    console.log("Generating accounting reports...");
+  }
+}
+
+let department: Department; // ok to create a reference to an abstract type
+// department = new Department(); // error: cannot create an instance of an abstract class
+department = new AccountingDepartment(); // ok to create and assign a non-abstract subclass
+department.printName();
+department.printMeeting();
+// department.generateReports(); // error: method doesn't exist on declared type Department!
+(department as AccountingDepartment).generateReports(); // OK with type assertion</code></pre>
+                <div class="collapsible-container my-4">
+                    <button class="collapsible-trigger bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-t-md w-full text-left flex justify-between items-center transition-colors duration-150">
+                        <span class="text-lg">Classes as Interfaces</span>
+                        <i data-lucide="chevron-down" class="collapsible-icon w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="collapsible-content hidden bg-gray-700/60 p-4 rounded-b-md border border-t-0 border-gray-600">
+                        <p>Because classes create types, you can use them in the same places you would be able to use interfaces. For example, a class declaration creates a type with the same name, representing the instance side of the class.</p>
+                        <pre><code class="language-typescript">class Point {
+    x: number = 0;
+    y: number = 0;
+}
+
+interface Point3d extends Point { // A class can be extended by an interface
+    z: number;
+}
+
+let point3d: Point3d = {x: 1, y: 2, z: 3};</code></pre>
+                    </div>
+                </div>
+            </article>
+            
+            <article id="ts-functions" class="lesson-content hidden bg-gray-800/50 p-6 rounded-lg shadow-lg backdrop-blur-md mt-8 prose prose-invert max-w-none">
+                <h3 class="text-2xl font-semibold text-blue-300 mb-4">Lesson: Functions</h3>
+                <p>Functions are fundamental building blocks in JavaScript and TypeScript. TypeScript adds type safety to function parameters and return values.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Function Declaration and Types</h4>
+                <p>You can define types for function parameters and return values:</p>
+                <pre><code class="language-typescript">// Named function
+function add(x: number, y: number): number {
+  return x + y;
+}
+
+// Anonymous function (function expression)
+let multiply = function(x: number, y: number): number {
+  return x * y;
+};
+
+// Arrow function
+const subtract = (x: number, y: number): number => {
+  return x - y;
+};</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Typing the Function</h4>
+                <p>We can also explicitly type the variable that holds a function expression:</p>
+                <pre><code class="language-typescript">let divide: (a: number, b: number) => number;
+
+divide = (x, y) => { // Parameter names can be different
+  if (y === 0) throw new Error("Cannot divide by zero");
+  return x / y;
+};
+
+// console.log(divide("10", 2)); // Error: Argument of type 'string' is not assignable to parameter of type 'number'.
+console.log(divide(10, 2)); // 5</code></pre>
+                <p>The parameter types and return type together constitute the function's "type signature."</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Optional and Default Parameters</h4>
+                <p>In TypeScript, every parameter is assumed to be required by the function. You can mark a parameter as optional by appending a <code>?</code> to its name. Default-initialized parameters are also considered optional.</p>
+                <pre><code class="language-typescript">// Optional parameter
+function buildName(firstName: string, lastName?: string): string {
+  if (lastName) {
+    return firstName + " " + lastName;
+  } else {
+    return firstName;
+  }
+}
+let result1 = buildName("Bob");             // Bob
+let result2 = buildName("Bob", "Adams");    // Bob Adams
+// let result3 = buildName("Bob", "Adams", "Sr."); // Error, expected 2 arguments, but got 3.
+
+// Default parameter
+function greetUser(name: string, greeting: string = "Hello"): string {
+  return `${greeting}, ${name}!`;
+}
+console.log(greetUser("Alice"));          // Hello, Alice!
+console.log(greetUser("Alice", "Hi"));  // Hi, Alice!</code></pre>
+                <p>Optional parameters must follow required parameters. However, default parameters don't need to appear after all required parameters. If a default-initialized parameter comes before a required parameter, users need to explicitly pass <code>undefined</code> to get the default value.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Rest Parameters</h4>
+                <p>Rest parameters allow a function to accept an indefinite number of arguments as an array.</p>
+                <pre><code class="language-typescript">function buildFullName(firstName: string, ...restOfName: string[]): string {
+  return firstName + " " + restOfName.join(" ");
+}
+
+let employeeName = buildFullName("Joseph", "Samuel", "Lucas", "MacKinzie");
+console.log(employeeName); // Joseph Samuel Lucas MacKinzie</code></pre>
+                <p>The rest parameter must be the last parameter in the function signature.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3"><code>this</code> and Arrow Functions</h4>
+                <p>In JavaScript, the value of <code>this</code> can change depending on how a function is called. Arrow functions capture the <code>this</code> where the function is created rather than where it is invoked. This is particularly useful for callbacks and methods that need to preserve their original <code>this</code> context.</p>
+                <pre><code class="language-typescript">interface Card {
+  suit: string;
+  card: number;
+}
+interface Deck {
+  suits: string[];
+  cards: number[];
+  createCardPicker(this: Deck): () => Card; // Explicitly typing 'this'
+}
+
+let deck: Deck = {
+  suits: ["hearts", "spades", "clubs", "diamonds"],
+  cards: Array(52),
+  createCardPicker: function(this: Deck) {
+    return () => { // Arrow function captures 'this' from createCardPicker
+      let pickedCard = Math.floor(Math.random() * 52);
+      let pickedSuit = Math.floor(pickedCard / 13);
+      return { suit: this.suits[pickedSuit], card: pickedCard % 13 };
+    }
+  }
+}
+
+let cardPicker = deck.createCardPicker();
+let pickedCard = cardPicker();
+console.log("card: " + pickedCard.card + " of " + pickedCard.suit);</code></pre>
+                <p>TypeScript helps manage <code>this</code> by allowing you to specify the type of <code>this</code> in a function signature. If you specify a <code>this</code> parameter, it must be the first parameter, and it's only used for type checking (it's erased during compilation).</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Overloads</h4>
+                <p>JavaScript is inherently a very dynamic language. It’s not uncommon for a single function to return different types of objects based on the shape of the arguments passed in. TypeScript allows you to declare function overloads to document these variations.</p>
+                <pre><code class="language-typescript">function combine(input1: number, input2: number): number;
+function combine(input1: string, input2: string): string;
+function combine(input1: any, input2: any): any { // This is the implementation signature
+  if (typeof input1 === 'number' && typeof input2 === 'number') {
+    return input1 + input2;
+  } else if (typeof input1 === 'string' && typeof input2 === 'string') {
+    return input1 + input2;
+  }
+  throw new Error("Inputs must be both numbers or both strings.");
+}
+
+let numResult = combine(1, 2);       // 3
+let strResult = combine("Hello", "World"); // HelloWorld
+// let errResult = combine("Hello", 1); // Error: No overload matches this call.</code></pre>
+                <p>The implementation signature (the one with the actual function body) must be compatible with all the overload signatures. It is not visible from the "outside". When calling an overloaded function, TypeScript will try to match the call with one of the overload signatures.</p>
+                <div class="collapsible-container my-4">
+                    <button class="collapsible-trigger bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-t-md w-full text-left flex justify-between items-center transition-colors duration-150">
+                        <span class="text-lg">When to use Overloads?</span>
+                        <i data-lucide="chevron-down" class="collapsible-icon w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="collapsible-content hidden bg-gray-700/60 p-4 rounded-b-md border border-t-0 border-gray-600">
+                        <p>Overloads are useful when a function can behave quite differently based on its input types and you want to provide strong type safety for each case. However, if the variations are numerous or complex, using union types or generic parameters might be a more manageable approach.</p>
+                    </div>
+                </div>
+            </article>
+            
+            <article id="ts-generics" class="lesson-content hidden bg-gray-800/50 p-6 rounded-lg shadow-lg backdrop-blur-md mt-8 prose prose-invert max-w-none">
+                <h3 class="text-2xl font-semibold text-blue-300 mb-4">Lesson: Generics</h3>
+                <p>Generics allow you to write reusable code that can work with a variety of types rather than a single one. This is a core feature for building scalable and type-safe components and functions.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">The Identity Function Problem</h4>
+                <p>Consider a simple identity function that returns whatever is passed into it:</p>
+                <pre><code class="language-typescript">// Using 'any' - loses type information
+function identityAny(arg: any): any {
+  return arg;
+}
+let outputAny = identityAny("myString"); // outputAny is 'any'
+
+// How can we make it preserve the type of the argument?
+</code></pre>
+                <p>Using <code>any</code> is not ideal because we lose the type information. We want the function to return the specific type that was passed in.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Introducing Generics</h4>
+                <p>A generic function uses a <em>type variable</em>, a special kind of variable that works on types rather than values. This type variable (commonly <code>T</code>) allows us to capture the type the user provides and use it later.</p>
+                <pre><code class="language-typescript">function identity&lt;T&gt;(arg: T): T {
+  return arg;
+}
+
+// Calling the generic function
+let output1 = identity&lt;string&gt;("myString"); // Type of output1 is 'string'
+let output2 = identity&lt;number&gt;(100);       // Type of output2 is 'number'
+
+// Type argument inference (often, TypeScript can infer T)
+let output3 = identity("myString");        // Type of output3 is 'string'
+let output4 = identity(true);              // Type of output4 is 'boolean'</code></pre>
+                <p>The <code>&lt;T&gt;</code> after the function name declares <code>T</code> as a type variable. We can then use <code>T</code> as the type for the argument and the return value.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Working with Generic Type Variables</h4>
+                <p>When you start to use generics, you might be tempted to assume that <code>T</code> always has certain properties. For example, if you want to log the length of <code>arg</code>:</p>
+                <pre><code class="language-typescript">// This will cause an error:
+// function loggingIdentity&lt;T&gt;(arg: T): T {
+//   console.log(arg.length); // Error: T doesn't have .length
+//   return arg;
+// }</code></pre>
+                <p>To fix this, we can constrain <code>T</code> to types that have a <code>length</code> property, for example, an array of <code>T</code>:</p>
+                <pre><code class="language-typescript">function loggingIdentity&lt;T&gt;(arg: T[]): T[] {
+  console.log(arg.length); // Array has a .length, so no more error
+  return arg;
+}
+// Or, more generally:
+function loggingIdentityWithInterface&lt;T&gt;(arg: { length: number }): T {
+  console.log(arg.length);
+  return arg; // Note: return type needs to be { length: number } too, or more specific
+}
+// A better way using an interface for the constraint:
+interface Lengthwise {
+    length: number;
+}
+function loggingIdentityConstrained&lt;T extends Lengthwise&gt;(arg: T): T {
+    console.log(arg.length); // Now we know it has a .length property
+    return arg;
+}
+loggingIdentityConstrained("hello"); // string has length
+loggingIdentityConstrained([1, 2, 3]); // array has length
+// loggingIdentityConstrained(10); // Error: number does not have length</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Generic Types (Interfaces and Classes)</h4>
+                <p>You can also create generic interfaces and classes.</p>
+                <p><strong>Generic Interface:</strong></p>
+                <pre><code class="language-typescript">interface GenericIdentityFn&lt;T&gt; {
+  (arg: T): T;
+}
+
+function identityFromInterface&lt;T&gt;(arg: T): T {
+  return arg;
+}
+
+let myIdentity: GenericIdentityFn&lt;number&gt; = identityFromInterface;
+console.log(myIdentity(5)); // 5
+// console.log(myIdentity("hello")); // Error: string is not assignable to number</code></pre>
+
+                <p><strong>Generic Class:</strong></p>
+                <pre><code class="language-typescript">class GenericNumber&lt;T&gt; {
+  zeroValue: T;
+  add: (x: T, y: T) => T;
+
+  constructor(zero: T, addFn: (x: T, y: T) => T) {
+    this.zeroValue = zero;
+    this.add = addFn;
+  }
+}
+
+let myGenericNumber = new GenericNumber&lt;number&gt;(0, (x, y) => x + y);
+console.log(myGenericNumber.add(5, 10)); // 15
+
+let myGenericString = new GenericNumber&lt;string&gt;("", (x, y) => x + y);
+console.log(myGenericString.add("hello", " world")); // "hello world"</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Generic Constraints</h4>
+                <p>We saw an example of constraints with <code>extends Lengthwise</code>. This ensures that the type variable <code>T</code> will have at least the properties of <code>Lengthwise</code>.</p>
+                <pre><code class="language-typescript">interface Vehicle {
+  wheels: number;
+}
+
+function drive&lt;T extends Vehicle&gt;(vehicle: T) {
+  console.log(`Driving a vehicle with ${vehicle.wheels} wheels.`);
+}
+
+drive({ wheels: 4 }); // OK
+drive({ wheels: 2, type: "motorcycle" }); // OK, extra properties are fine
+// drive({ name: "Bicycle" }); // Error: Property 'wheels' is missing</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Using Type Parameters in Generic Constraints</h4>
+                <p>You can declare a type parameter that is constrained by another type parameter.</p>
+                <pre><code class="language-typescript">function getProperty&lt;T, K extends keyof T&gt;(obj: T, key: K): T[K] {
+  return obj[key];
+}
+
+let x = { a: 1, b: "hello", c: true };
+let aValue = getProperty(x, "a"); // number
+let bValue = getProperty(x, "b"); // string
+// let dValue = getProperty(x, "d"); // Error: Argument of type '"d"' is not assignable to parameter of type '"a" | "b" | "c"'.</code></pre>
+                <p>Here, <code>keyof T</code> is the union of known, public property names of <code>T</code>. <code>K extends keyof T</code> ensures that <code>key</code> is a valid property of <code>obj</code>. <code>T[K]</code> is the type of the property <code>key</code> on <code>obj</code>.</p>
+
+                <div class="collapsible-container my-4">
+                    <button class="collapsible-trigger bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-t-md w-full text-left flex justify-between items-center transition-colors duration-150">
+                        <span class="text-lg">Generics in Practice</span>
+                        <i data-lucide="chevron-down" class="collapsible-icon w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="collapsible-content hidden bg-gray-700/60 p-4 rounded-b-md border border-t-0 border-gray-600">
+                        <p>Generics are heavily used in utility types (like <code>Partial&lt;T&gt;</code>, <code>Readonly&lt;T&gt;</code>), array methods (<code>map&lt;U&gt;</code>, <code>filter</code>), Promises (<code>Promise&lt;T&gt;</code>), and in frameworks like React for component props and state. They are crucial for writing flexible and robust typed code.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article id="ts-enums" class="lesson-content hidden bg-gray-800/50 p-6 rounded-lg shadow-lg backdrop-blur-md mt-8 prose prose-invert max-w-none">
+                <h3 class="text-2xl font-semibold text-blue-300 mb-4">Lesson: Enums</h3>
+                <p>Enums (enumerations) allow you to define a set of named constants. Using enums can make your code more readable and less error-prone by restricting variables to a predefined set of values.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Numeric Enums</h4>
+                <p>By default, enums are number-based. They auto-increment from 0, but you can set the value of the first member or any member.</p>
+                <pre><code class="language-typescript">enum Direction {
+  Up,    // 0
+  Down,  // 1
+  Left,  // 2
+  Right  // 3
+}
+let dir: Direction = Direction.Up;
+console.log(dir); // Output: 0
+
+enum ResponseStatus {
+  Success = 200,
+  NotFound = 404,
+  Error = 500 // Auto-increment from here if next ones are not initialized
+}
+let status: ResponseStatus = ResponseStatus.NotFound;
+console.log(status); // Output: 404</code></pre>
+                <p>Numeric enums also support reverse mapping from value to name:</p>
+                <pre><code class="language-typescript">console.log(Direction[0]); // Output: "Up"
+console.log(ResponseStatus[200]); // Output: "Success"</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">String Enums</h4>
+                <p>String enums are a similar concept, but their values are initialized with strings. String enums do not have auto-incrementing behavior and each member must be explicitly initialized with a string literal or another string enum member.</p>
+                <pre><code class="language-typescript">enum LogLevel {
+  Info = "INFO",
+  Warning = "WARN",
+  Error = "ERROR",
+  Debug = "DEBUG"
+}
+
+function logMessage(level: LogLevel, message: string) {
+  console.log(`[${level}] ${message}`);
+}
+
+logMessage(LogLevel.Info, "Application started.");
+// logMessage("OTHER", "This won't compile"); // Error</code></pre>
+                <p>String enums offer better readability when debugging, as the string value is often more meaningful than a number. They do not have a reverse mapping from value to name.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Heterogeneous Enums</h4>
+                <p>Enums can technically have a mix of string and numeric members, but this is generally not recommended due to potential confusion.</p>
+                <pre><code class="language-typescript">enum Mixed {
+  No = 0,
+  Yes = "YES",
+  // Maybe = 1 // Allowed
+}</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Computed and Constant Members</h4>
+                <p>Enum members can have values that are computed. An enum member is considered constant if:</p>
+                <ul>
+                    <li>It is the first member in the enum and has no initializer, in which case it’s assigned the value <code>0</code>.</li>
+                    <li>It does not have an initializer and the preceding enum member was a <em>numeric</em> constant. In this case the value of the current enum member will be the value of the preceding enum member plus one.</li>
+                    <li>It is initialized with a constant enum expression (a subset of TypeScript expressions that can be fully evaluated at compile time).</li>
+                </ul>
+                <p>In all other cases enum member is considered computed.</p>
+                <pre><code class="language-typescript">enum FileAccess {
+  // constant members
+  None, // 0
+  Read    = 1 &lt;&lt; 1, // 2 (computed from constant expression)
+  Write   = 1 &lt;&lt; 2, // 4
+  ReadWrite  = Read | Write, // 6 (computed from constant expression)
+  // computed member
+  G = "123".length // 3
+}
+console.log(FileAccess.Read); // 2
+console.log(FileAccess.G);    // 3</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Enums at Runtime</h4>
+                <p>Enums are real objects that exist at runtime. For example, the <code>Direction</code> enum above would compile to JavaScript similar to this:</p>
+                <pre><code class="language-javascript">// Generated JavaScript for Direction enum (simplified)
+var Direction;
+(function (Direction) {
+    Direction[Direction["Up"] = 0] = "Up";
+    Direction[Direction["Down"] = 1] = "Down";
+    Direction[Direction["Left"] = 2] = "Left";
+    Direction[Direction["Right"] = 3] = "Right";
+})(Direction || (Direction = {}));</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Const Enums</h4>
+                <p>To avoid the overhead of generating code for an enum object and to achieve inlining of enum values, you can use <code>const</code> enums. Const enums are completely removed during compilation after their values are substituted.</p>
+                <pre><code class="language-typescript">const enum HttpStatusCodes {
+  OK = 200,
+  MovedPermanently = 301,
+  BadRequest = 400
+}
+
+let code: HttpStatusCodes = HttpStatusCodes.OK;
+// console.log(HttpStatusCodes[200]); // Error: A const enum member can only be accessed using a string literal.
+// Accessing HttpStatusCodes itself after compilation would also be an error as it's erased.</code></pre>
+                <p>The compiled JavaScript for using <code>HttpStatusCodes.OK</code> would directly inline the value <code>200</code>.</p>
+
+                <div class="collapsible-container my-4">
+                    <button class="collapsible-trigger bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-t-md w-full text-left flex justify-between items-center transition-colors duration-150">
+                        <span class="text-lg">Enums vs. String Literal Unions</span>
+                        <i data-lucide="chevron-down" class="collapsible-icon w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="collapsible-content hidden bg-gray-700/60 p-4 rounded-b-md border border-t-0 border-gray-600">
+                        <p>For simple cases, especially with string values, a union of string literals can be a lightweight alternative to string enums:</p>
+                        <pre><code class="language-typescript">type Alignment = "left" | "right" | "center";
+let textAlign: Alignment = "left";
+// textAlign = "justify"; // Error
+
+// Compared to:
+// enum TextAlignmentEnum { Left = "left", Right = "right", Center = "center" }
+// let enumAlign: TextAlignmentEnum = TextAlignmentEnum.Left;</code></pre>
+                        <p>String literal unions don't create runtime objects and are often preferred for their simplicity when you just need a set of specific string values.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article id="ts-type-adv" class="lesson-content hidden bg-gray-800/50 p-6 rounded-lg shadow-lg backdrop-blur-md mt-8 prose prose-invert max-w-none">
+                <h3 class="text-2xl font-semibold text-blue-300 mb-4">Lesson: Advanced Types</h3>
+                <p>TypeScript has a rich type system that includes several advanced type constructs. These allow for more expressive and precise type definitions.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Intersection Types</h4>
+                <p>An intersection type combines multiple types into one. This new type has all members of all the types in the intersection. It's like an "AND" operation for types.</p>
+                <pre><code class="language-typescript">interface Loggable {
+  log(message: string): void;
+}
+interface Serializable {
+  serialize(): string;
+}
+
+type LoggableSerializable = Loggable & Serializable;
+
+class DataItem implements LoggableSerializable {
+  constructor(private data: any) {}
+
+  log(message: string): void {
+    console.log(`[LOG: ${new Date().toISOString()}] ${message} - Data: ${this.data}`);
+  }
+
+  serialize(): string {
+    return JSON.stringify(this.data);
+  }
+}
+
+let item = new DataItem({ id: 1, value: "test" });
+item.log("Processing item");
+let serializedItem = item.serialize();
+console.log(serializedItem);</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Union Types</h4>
+                <p>A union type describes a value that can be one of several types. We use the vertical bar (<code>|</code>) to separate each type. It's like an "OR" operation for types.</p>
+                <pre><code class="language-typescript">function padLeft(value: string, padding: string | number): string {
+  if (typeof padding === "number") {
+    return Array(padding + 1).join(" ") + value;
+  }
+  if (typeof padding === "string") {
+    return padding + value;
+  }
+  throw new Error(`Expected string or number, got '${typeof padding}'.`);
+}
+
+console.log(padLeft("Hello", 4));       // "    Hello"
+console.log(padLeft("Hello", "---")); // "---Hello"
+// console.log(padLeft("Hello", true)); // Error</code></pre>
+                <p>If a value has a union type, we can only access members that are common to all types in the union. To access specific members, you'll need to use type guards.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Type Guards and Differentiating Types</h4>
+                <p>Type guards are expressions that perform a runtime check that guarantees the type in some scope. Common type guards include <code>typeof</code>, <code>instanceof</code>, and property checks.</p>
+                <pre><code class="language-typescript">interface Bird {
+  fly(): void;
+  layEggs(): void;
+}
+interface Fish {
+  swim(): void;
+  layEggs(): void;
+}
+
+function getPet(): Bird | Fish {
+  return Math.random() > 0.5 ? { fly: () => {}, layEggs: () => {} } : { swim: () => {}, layEggs: () => {} };
+}
+
+let pet = getPet();
+pet.layEggs(); // OK, common property
+
+// Using 'in' operator as a type guard
+if ("fly" in pet) {
+  pet.fly(); // pet is narrowed to Bird
+} else {
+  pet.swim(); // pet is narrowed to Fish
+}
+
+// User-defined type guards
+function isBird(p: Bird | Fish): p is Bird {
+  return (p as Bird).fly !== undefined;
+}
+
+if (isBird(pet)) {
+  pet.fly();
+} else {
+  pet.swim();
+}</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Type Aliases</h4>
+                <p>Type aliases create a new name for a type. Type aliases can be used for primitives, unions, intersections, tuples, or any other types that you’d otherwise have to write by hand.</p>
+                <pre><code class="language-typescript">type Point = { x: number; y: number };
+type ID = string | number;
+type Tree&lt;T&gt; = {
+  value: T;
+  left?: Tree&lt;T&gt;;
+  right?: Tree&lt;T&gt;;
+};
+
+let startPoint: Point = { x: 0, y: 0 };
+let userId: ID = "user123";
+let numberTree: Tree&lt;number&gt; = { value: 1, left: { value: 0 }, right: { value: 2 } };</code></pre>
+                <p>Interfaces vs. Type Aliases: Type aliases are similar to interfaces but have some key differences. Interfaces can be merged (declaration merging), while type aliases cannot. Interfaces are generally preferred for object shapes and class contracts, while type aliases are good for naming unions, intersections, or complex utility types.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">String Literal Types</h4>
+                <p>String literal types allow you to specify the exact value a string must have.</p>
+                <pre><code class="language-typescript">type Easing = "ease-in" | "ease-out" | "ease-in-out";
+
+function animate(mode: Easing) {
+  console.log(`Animating with ${mode}`);
+}
+animate("ease-in");
+// animate("linear"); // Error: Argument of type '"linear"' is not assignable to parameter of type 'Easing'.</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Numeric Literal Types</h4>
+                <p>Similar to string literal types, you can have numeric literal types.</p>
+                <pre><code class="language-typescript">type DiceRoll = 1 | 2 | 3 | 4 | 5 | 6;
+function rollDice(): DiceRoll {
+  return (Math.floor(Math.random() * 6) + 1) as DiceRoll;
+}
+let myRoll = rollDice();</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Discriminated Unions (Tagged Unions)</h4>
+                <p>A common pattern that combines union types, literal types, and type guards. Each type in the union contains a common property (the discriminant) with a literal type, allowing TypeScript to narrow down the type.</p>
+                <pre><code class="language-typescript">interface Square {
+  kind: "square"; // Discriminant property
+  size: number;
+}
+interface Rectangle {
+  kind: "rectangle";
+  width: number;
+  height: number;
+}
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+type Shape = Square | Rectangle | Circle;
+
+function area(s: Shape): number {
+  switch (s.kind) {
+    case "square": return s.size * s.size; // s is Square
+    case "rectangle": return s.width * s.height; // s is Rectangle
+    case "circle": return Math.PI * s.radius ** 2; // s is Circle
+    default:
+      const _exhaustiveCheck: never = s; // Ensures all cases are handled
+      return _exhaustiveCheck;
+  }
+}</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Index Types (<code>keyof</code> and Lookup Types)</h4>
+                <p><code>keyof T</code> produces a union of string or numeric literal types representing the public property names of <code>T</code>. Lookup types (<code>T[K]</code>) allow you to access the type of a property.</p>
+                <pre><code class="language-typescript">interface Person {
+  name: string;
+  age: number;
+  location: string;
+}
+type PersonProps = keyof Person; // "name" | "age" | "location"
+
+function getPropertyTyped&lt;T, K extends keyof T&gt;(obj: T, key: K): T[K] {
+  return obj[key];
+}
+let person: Person = { name: "Alice", age: 30, location: "Wonderland" };
+let personName: string = getPropertyTyped(person, "name");
+let personAge: number = getPropertyTyped(person, "age");</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Mapped Types</h4>
+                <p>Mapped types allow you to create new types by transforming properties from an existing type. They build on index signatures and <code>keyof</code>.</p>
+                <pre><code class="language-typescript">// Makes all properties of T optional
+type Partial&lt;T&gt; = {
+  [P in keyof T]?: T[P];
+};
+// Makes all properties of T readonly
+type Readonly&lt;T&gt; = {
+  readonly [P in keyof T]: T[P];
+};
+
+interface UserProfile {
+  id: number;
+  username: string;
+  email?: string;
+}
+type PartialUserProfile = Partial&lt;UserProfile&gt;; // All props become optional
+type ReadonlyUserProfile = Readonly&lt;UserProfile&gt;; // All props become readonly</code></pre>
+                <p>TypeScript provides several built-in mapped types like <code>Partial&lt;T&gt;</code>, <code>Readonly&lt;T&gt;</code>, <code>Pick&lt;T, K&gt;</code>, and <code>Record&lt;K, T&gt;</code>.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Conditional Types</h4>
+                <p>Conditional types allow you to choose a type based on a condition. They take the form <code>T extends U ? X : Y</code>.</p>
+                <pre><code class="language-typescript">interface IdLabel { id: number; /* ... */ }
+interface NameLabel { name: string; /* ... */ }
+
+type NameOrId&lt;T extends number | string&gt; = T extends number ? IdLabel : NameLabel;
+
+function createLabel&lt;T extends number | string&gt;(idOrName: T): NameOrId&lt;T&gt; {
+  throw "unimplemented";
+}
+
+let a = createLabel("typescript"); // Type is NameLabel
+let b = createLabel(2.8);      // Type is IdLabel
+let c = createLabel(Math.random() ? "hello" : 42); // Type is NameLabel | IdLabel</code></pre>
+                <p>Conditional types, especially with the <code>infer</code> keyword, are powerful for creating complex utility types (e.g., <code>ReturnType&lt;T&gt;</code>, <code>Parameters&lt;T&gt;</code>).</p>
+                <div class="collapsible-container my-4">
+                    <button class="collapsible-trigger bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-t-md w-full text-left flex justify-between items-center transition-colors duration-150">
+                        <span class="text-lg">The `never` Type in Exhaustiveness Checking</span>
+                        <i data-lucide="chevron-down" class="collapsible-icon w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="collapsible-content hidden bg-gray-700/60 p-4 rounded-b-md border border-t-0 border-gray-600">
+                        <p>The <code>never</code> type is useful for exhaustiveness checking in discriminated unions. If you add a new variant to the <code>Shape</code> union type and forget to handle it in the <code>area</code> function's switch statement, the <code>default</code> case will try to assign the unhandled shape to <code>_exhaustiveCheck</code> (which is of type <code>never</code>). This will cause a compile-time error, alerting you to the unhandled case.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article id="ts-modules" class="lesson-content hidden bg-gray-800/50 p-6 rounded-lg shadow-lg backdrop-blur-md mt-8 prose prose-invert max-w-none">
+                <h3 class="text-2xl font-semibold text-blue-300 mb-4">Lesson: Modules & Namespaces</h3>
+                <p>As applications grow, organizing code becomes crucial. TypeScript provides modules and namespaces to help structure your code, manage dependencies, and prevent naming conflicts.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Modules (ES Modules / External Modules)</h4>
+                <p>TypeScript shares the same module concept as ECMAScript 2015 (ES6). Any file containing a top-level <code>import</code> or <code>export</code> is considered a module. Modules are executed within their own scope, not in the global scope. This means variables, functions, classes, etc. declared in a module are not visible outside the module unless they are explicitly exported.</p>
+                
+                <p><strong>Exporting from a module:</strong></p>
+                <pre><code class="language-typescript">// validator.ts
+export interface StringValidator {
+  isAcceptable(s: string): boolean;
+}
+
+export const numberRegexp = /^[0-9]+$/;
+
+export class ZipCodeValidator implements StringValidator {
+  isAcceptable(s: string) {
+    return s.length === 5 && numberRegexp.test(s);
+  }
+}
+
+// Can also export separately
+class LettersOnlyValidator implements StringValidator {
+  isAcceptable(s: string) {
+    return /^[A-Za-z]+$/.test(s);
+  }
+}
+// export { LettersOnlyValidator }; // Single export
+export { LettersOnlyValidator as MyLettersValidator }; // Renaming export
+export default class DefaultValidator { /* ... */ } // Default export</code></pre>
+
+                <p><strong>Importing into a module:</strong></p>
+                <pre><code class="language-typescript">// main.ts
+import DefaultValidator, { ZipCodeValidator, MyLettersValidator as LetterVal, StringValidator } from "./validator";
+import * as ValidatorModule from "./validator"; // Import entire module as an object
+
+let myZipValidator = new ZipCodeValidator();
+let myLetterValidator = new LetterVal();
+let defaultVal = new DefaultValidator();
+
+let strings = ["Hello", "98052", "101"];
+strings.forEach(s => {
+  console.log(`"${s}" ${myZipValidator.isAcceptable(s) ? " matches" : " does not match"} zip`);
+});
+
+let v = new ValidatorModule.ZipCodeValidator(); // Using alias</code></pre>
+                <ul>
+                    <li><code>export</code> makes declarations available to other modules.</li>
+                    <li><code>import</code> brings declarations from other modules into the current scope.</li>
+                    <li>Modules can have one <code>default export</code>.</li>
+                    <li><code>import * as Alias from "./module"</code> imports all exports into <code>Alias</code>.</li>
+                </ul>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Namespaces (Internal Modules)</h4>
+                <p>Namespaces are a TypeScript-specific way to organize code. They were more common before ES modules became standard. A namespace provides a way to group related code and avoid polluting the global scope. If you're working with modern JavaScript (ES6+), modules are generally preferred over namespaces for organizing code across files.</p>
+                <pre><code class="language-typescript">// validation.ts (Illustrative, for a single file or legacy setup)
+namespace Validation {
+  export interface StringValidator {
+    isAcceptable(s: string): boolean;
+  }
+
+  const lettersRegexp = /^[A-Za-z]+$/;
+  const numberRegexp = /^[0-9]+$/;
+
+  export class LettersOnlyValidator implements StringValidator {
+    isAcceptable(s: string) {
+      return lettersRegexp.test(s);
+    }
+  }
+
+  export class ZipCodeValidator implements StringValidator {
+    isAcceptable(s: string) {
+      return s.length === 5 && numberRegexp.test(s);
+    }
+  }
+}
+
+// Using the namespace
+let strings2 = ["Hello", "98052", "101"];
+let validators: { [s: string]: Validation.StringValidator; } = {};
+validators["ZIP code"] = new Validation.ZipCodeValidator();
+validators["Letters only"] = new Validation.LettersOnlyValidator();
+
+for (let s of strings2) {
+  for (let name in validators) {
+    console.log(`"${s}" - ${validators[name].isAcceptable(s) ? "matches" : "does not match"} ${name}`);
+  }
+}</code></pre>
+                <p>Namespaces can be nested and can span multiple files if compiled together (e.g., using <code>--outFile</code> with <code>tsc</code>, which is less common now).</p>
+                <p>To use a namespace defined in another file (when not using ES modules and compiling multiple files together):</p>
+                <pre><code class="language-xml">// &lt;!-- Assuming validation.ts and main_namespace.ts are compiled together --&gt;
+// &lt;!-- main_namespace.ts --&gt;
+// /// &lt;reference path="validation.ts" /&gt;
+// let v = new Validation.ZipCodeValidator();</code></pre>
+                <p>The triple-slash reference (<code>/// &lt;reference path="..." /&gt;</code>) is a directive to the compiler about inter-file dependencies for namespaces.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Modules vs. Namespaces</h4>
+                <ul>
+                    <li><strong>Modules (ES Modules):</strong>
+                        <ul>
+                            <li>File-based: Each file is a module.</li>
+                            <li>Standardized: Aligns with ECMAScript standard.</li>
+                            <li>Explicit imports/exports: Clear dependency management.</li>
+                            <li>Better for modern JavaScript development, especially with bundlers like Webpack, Rollup, or Vite.</li>
+                            <li>Recommended for most new projects.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Namespaces:</strong>
+                        <ul>
+                            <li>Not file-based inherently (can be split across files if compiled together).</li>
+                            <li>TypeScript-specific feature.</li>
+                            <li>Good for organizing code within a single file or when targeting environments without module loader support (less common now).</li>
+                            <li>Can help structure global variables from libraries that don't use modules.</li>
+                            <li>Less used in modern development favouring ES Modules.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Ambient Modules and Declaration Files (<code>.d.ts</code>)</h4>
+                <p>When working with JavaScript libraries that don't have TypeScript typings, or when describing the shape of external modules, you use declaration files (<code>.d.ts</code>). These files don't contain implementations, only type information.</p>
+                <p><strong>Ambient Module Declaration:</strong></p>
+                <pre><code class="language-typescript">// my-library.d.ts
+declare module "my-untyped-library" {
+  export function doSomething(value: string): boolean;
+  export const version: string;
+}
+
+// app.ts
+// import { doSomething } from "my-untyped-library";
+// doSomething("test");
+// This would work if "my-untyped-library" actually existed and was configured.
+</code></pre>
+                <p>Many popular JavaScript libraries have community-maintained type definitions available on DefinitelyTyped (<code>@types/package-name</code> on npm).</p>
+
+                <div class="collapsible-container my-4">
+                    <button class="collapsible-trigger bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-t-md w-full text-left flex justify-between items-center transition-colors duration-150">
+                        <span class="text-lg">Key Takeaway</span>
+                        <i data-lucide="chevron-down" class="collapsible-icon w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="collapsible-content hidden bg-gray-700/60 p-4 rounded-b-md border border-t-0 border-gray-600">
+                        <p>For modern TypeScript projects, <strong>ES Modules are the standard and recommended way</strong> to organize code and manage dependencies between files. Namespaces are a legacy feature that can be useful in specific scenarios, particularly when dealing with older code or global script includes, but are generally avoided in new module-based projects.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article id="ts-decorators" class="lesson-content hidden bg-gray-800/50 p-6 rounded-lg shadow-lg backdrop-blur-md mt-8 prose prose-invert max-w-none">
+                <h3 class="text-2xl font-semibold text-blue-300 mb-4">Lesson: Decorators</h3>
+                <p>Decorators are a special kind of declaration that can be attached to classes, methods, accessors, properties, or parameters. They provide a way to add annotations and meta-programming syntax for class declarations and members. Decorators are an experimental feature in TypeScript and require enabling the <code>experimentalDecorators</code> compiler option in <code>tsconfig.json</code>.</p>
+                <p>Decorators are functions that are called at runtime with information about the decorated declaration.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Enabling Decorators</h4>
+                <p>To use decorators, you need to enable the <code>experimentalDecorators</code> option in your <code>tsconfig.json</code>:</p>
+                <pre><code class="language-json">{
+  "compilerOptions": {
+    "target": "ES5", // Or newer
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true // Often used with reflection libraries
+  }
+}</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Class Decorators</h4>
+                <p>A class decorator is applied to the constructor of a class and can be used to observe, modify, or replace a class definition. It receives the constructor of the class as its argument.</p>
+                <pre><code class="language-typescript">// Decorator function
+function sealed(constructor: Function) {
+  Object.seal(constructor);
+  Object.seal(constructor.prototype);
+  console.log("Class sealed:", constructor.name);
+}
+
+@sealed // Apply the decorator
+class GreeterClass {
+  greeting: string;
+  constructor(message: string) {
+    this.greeting = message;
+  }
+  greet() {
+    return "Hello, " + this.greeting;
+  }
+}
+
+// GreeterClass is now sealed. New properties cannot be added, existing ones cannot be removed.
+// GreeterClass.newProp = 1; // Would cause error in strict mode or fail silently
+</code></pre>
+                <p>If a class decorator returns a value, it will replace the class declaration (must be a constructor function).</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Method Decorators</h4>
+                <p>A method decorator is applied to a property descriptor for a method and can be used to observe, modify, or replace a method definition. It receives three arguments:</p>
+                <ol>
+                    <li>Either the constructor function of the class for a static member, or the prototype of the class for an instance member.</li>
+                    <li>The name of the member.</li>
+                    <li>The property descriptor for the member.</li>
+                </ol>
+                <pre><code class="language-typescript">function enumerable(value: boolean) {
+  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    descriptor.enumerable = value;
+    console.log(`Method ${propertyKey} enumerable set to ${value}`);
+  };
+}
+
+class PointClass {
+  private _x: number;
+  private _y: number;
+  constructor(x: number, y: number) {
+    this._x = x;
+    this._y = y;
+  }
+
+  @enumerable(false) // Make getCoordinates non-enumerable
+  getCoordinates() {
+    return `(${this._x}, ${this._y})`;
+  }
+}
+
+let p = new PointClass(10, 20);
+for (let key in p) {
+  console.log(key); // Will not log 'getCoordinates' if enumerable is false
+}</code></pre>
+                <p>If the method decorator returns a value, it will be used as the Property Descriptor for this member.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Accessor Decorators</h4>
+                <p>Accessor decorators are similar to method decorators but are applied to accessors (getters/setters). They receive the same arguments as method decorators.</p>
+                <pre><code class="language-typescript">function configurable(value: boolean) {
+  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    descriptor.configurable = value;
+  };
+}
+
+class UserAccount {
+  private _name: string;
+  constructor(name: string) { this._name = name; }
+
+  @configurable(false)
+  get name(): string { return this._name; }
+  // set name(newName: string) { this._name = newName; } // Would need its own decorator if desired
+}
+// Trying to delete UserAccount.prototype.name would fail if configurable is false
+</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Property Decorators</h4>
+                <p>A property decorator is declared just before a property declaration. It receives two arguments:</p>
+                <ol>
+                    <li>Either the constructor function of the class for a static member, or the prototype of the class for an instance member.</li>
+                    <li>The name of the member.</li>
+                </ol>
+                <p>Property decorators cannot directly modify the property's value or type, but they can be used to record metadata or perform other side effects. The return value of a property decorator is ignored.</p>
+                <pre><code class="language-typescript">import "reflect-metadata"; // Polyfill for Reflect API, often used with decorators
+
+function format(formatString: string) {
+  return Reflect.metadata("format", formatString);
+}
+
+function getFormat(target: any, propertyKey: string) {
+  return Reflect.getMetadata("format", target, propertyKey);
+}
+
+class MyData {
+  @format("Hello, %s")
+  greeting: string;
+
+  constructor(message: string) {
+    this.greeting = message;
+  }
+}
+
+let md = new MyData("World");
+console.log(getFormat(md, "greeting")); // "Hello, %s" (requires emitDecoratorMetadata: true)
+</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Parameter Decorators</h4>
+                <p>A parameter decorator is declared just before a parameter declaration. It is applied to the function for a class constructor or method declaration. It receives three arguments:</p>
+                <ol>
+                    <li>Either the constructor function of the class for a static member, or the prototype of the class for an instance member.</li>
+                    <li>The name of the member (method name or undefined for constructor).</li>
+                    <li>The ordinal index of the parameter in the function’s parameter list.</li>
+                </ol>
+                <p>Parameter decorators can only be used to observe that a parameter has been declared on a method. The return value is ignored.</p>
+                <pre><code class="language-typescript">function required(target: any, propertyKey: string | symbol, parameterIndex: number) {
+  console.log(`Parameter at index ${parameterIndex} of ${String(propertyKey)} is marked as required.`);
+  // Typically used to store metadata about required parameters
+}
+
+class BugReport {
+  type = "report";
+  title: string;
+
+  constructor(t: string) {
+    this.title = t;
+  }
+
+  print(@required verbose: boolean, @required user: string) {
+    if (verbose) {
+      console.log(`Bug: ${this.title} by ${user}`);
+    } else {
+      console.log(this.title);
+    }
+  }
+}
+let br = new BugReport("Crash on load");
+br.print(true, "dev_user");
+</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Decorator Composition</h4>
+                <p>Multiple decorators can be applied to a single declaration. They are evaluated in a specific order: expressions are evaluated top-to-bottom, and the resulting functions are called bottom-to-top (like function composition).</p>
+                <pre><code class="language-typescript">function f() {
+  console.log("f(): evaluated");
+  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    console.log("f(): called");
+  }
+}
+
+function g() {
+  console.log("g(): evaluated");
+  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    console.log("g(): called");
+  }
+}
+
+class CExample {
+  @f()
+  @g()
+  method() {}
+}
+// Output order:
+// f(): evaluated
+// g(): evaluated
+// g(): called
+// f(): called
+</code></pre>
+                <div class="collapsible-container my-4">
+                    <button class="collapsible-trigger bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-t-md w-full text-left flex justify-between items-center transition-colors duration-150">
+                        <span class="text-lg">Use Cases for Decorators</span>
+                        <i data-lucide="chevron-down" class="collapsible-icon w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="collapsible-content hidden bg-gray-700/60 p-4 rounded-b-md border border-t-0 border-gray-600">
+                        <p>Decorators are powerful for meta-programming tasks such as:</p>
+                        <ul>
+                            <li>Logging or instrumentation (e.g., logging method calls).</li>
+                            <li>Modifying behavior (e.g., debouncing a method, making it non-enumerable).</li>
+                            <li>Data validation (e.g., validating method parameters or property values).</li>
+                            <li>Dependency injection frameworks (e.g., Angular heavily uses decorators).</li>
+                            <li>ORM (Object-Relational Mapper) libraries (e.g., TypeORM uses decorators to define entities and columns).</li>
+                        </ul>
+                        <p>While powerful, use them judiciously as they are an advanced feature and can make code harder to understand if overused or poorly implemented.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article id="ts-js-integration" class="lesson-content hidden bg-gray-800/50 p-6 rounded-lg shadow-lg backdrop-blur-md mt-8 prose prose-invert max-w-none">
+                <h3 class="text-2xl font-semibold text-blue-300 mb-4">Lesson: Working with JavaScript (JS Integration)</h3>
+                <p>TypeScript is a superset of JavaScript, which means all valid JavaScript code is also valid TypeScript code. This makes integrating TypeScript into existing JavaScript projects or using JavaScript libraries in TypeScript projects relatively straightforward.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Gradual Adoption</h4>
+                <p>You can introduce TypeScript into an existing JavaScript project incrementally:</p>
+                <ol>
+                    <li><strong>Rename <code>.js</code> files to <code>.ts</code>:</strong> Start with a few files. TypeScript will likely report some errors, which you can fix.</li>
+                    <li><strong>Set <code>allowJs</code> compiler option:</strong> In <code>tsconfig.json</code>, set <code>"allowJs": true</code>. This allows TypeScript files to import JavaScript files and vice-versa. The TypeScript compiler can also process <code>.js</code> files.</li>
+                    <li><strong>Set <code>checkJs</code> compiler option:</strong> Optionally, set <code>"checkJs": true</code> in <code>tsconfig.json</code>. This enables type checking for JavaScript files (using JSDoc annotations for type information).</li>
+                    <li><strong>Add types gradually:</strong> Start adding type annotations to your <code>.ts</code> files. For <code>.js</code> files being checked, use JSDoc comments for types.</li>
+                </ol>
+                <pre><code class="language-json">// tsconfig.json example for mixed project
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "allowJs": true,
+    // "checkJs": true, // Optional: type-check JS files
+    "target": "es5",
+    "module": "commonjs", // Or "esnext" etc.
+    // "noImplicitAny": true, // Good for TS files
+    // "strict": true       // Stricter checks
+  },
+  "include": [
+    "./src/**/*" // Include both .ts and .js files in src
+  ]
+}</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Using JavaScript Libraries</h4>
+                <p>When you want to use a JavaScript library (e.g., from npm) in your TypeScript project, you need type definitions for that library. This allows TypeScript to understand the library's API and provide type checking and autocompletion.</p>
+                
+                <p><strong>1. DefinitelyTyped (<code>@types</code>):</strong></p>
+                <p>The <a href="https://definitelytyped.org/" target="_blank" class="text-purple-400 hover:text-purple-300">DefinitelyTyped</a> project is a massive repository of high-quality TypeScript type definitions for thousands of JavaScript libraries. These are typically installed as <code>@types</code> packages from npm.</p>
+                <p>For example, to use Lodash:</p>
+                <pre><code class="language-bash">npm install lodash
+npm install --save-dev @types/lodash</code></pre>
+                <p>Then you can import and use it with type safety:</p>
+                <pre><code class="language-typescript">import _ from 'lodash';
+
+let numbers = [1, 2, 3, 4, 5];
+let shuffled = _.shuffle(numbers);
+console.log(shuffled); // 'shuffled' is typed as number[]</code></pre>
+
+                <p><strong>2. Libraries with Bundled Types:</strong></p>
+                <p>Many modern JavaScript libraries are now written in TypeScript or include their own type definition files (<code>.d.ts</code>) directly in their npm package. In such cases, you usually don't need to install a separate <code>@types</code> package.</p>
+                
+                <p><strong>3. Writing Your Own Declaration Files (<code>.d.ts</code>):</strong></p>
+                <p>If a library doesn't have type definitions available, you can write your own. This involves creating a <code>.d.ts</code> file that describes the shape of the library's API.</p>
+                <p>For a simple module, you might create <code>my-js-lib.d.ts</code>:</p>
+                <pre><code class="language-typescript">// src/my-js-lib.d.ts
+declare module 'my-js-lib' {
+  export function processData(data: any): string;
+  export const version: number;
+}</code></pre>
+                <p>Then, in your TypeScript code:</p>
+                <pre><code class="language-typescript">// import { processData, version } from 'my-js-lib'; // Assuming my-js-lib exists
+// console.log(processData({ name: "Test" }));
+// console.log(version);</code></pre>
+                <p>You might need to configure <code>typeRoots</code> or <code>paths</code> in <code>tsconfig.json</code> if your custom <code>.d.ts</code> files are not automatically discovered.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Type Checking JavaScript Files with JSDoc</h4>
+                <p>If you have JavaScript files and want some level of type checking without converting them to TypeScript, you can use JSDoc annotations. With <code>checkJs: true</code>, TypeScript will use these annotations.</p>
+                <pre><code class="language-javascript">// utils.js
+/**
+ * Adds two numbers.
+ * @param {number} x First number.
+ * @param {number} y Second number.
+ * @returns {number} The sum of x and y.
+ */
+export function add(x, y) {
+  return x + y;
+}
+
+/** @type {string} */
+export const defaultGreeting = "Hello";
+
+// main.ts
+// import { add, defaultGreeting } from './utils.js'; // Note the .js extension might be needed depending on module config
+// console.log(add(5, 10));
+// console.log(defaultGreeting.toUpperCase());
+// add("5", 10); // TypeScript would flag an error here if checkJs is on and it processes utils.js</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Compiling JavaScript with TypeScript</h4>
+                <p>When <code>allowJs</code> is true, TypeScript can also compile (transpile) <code>.js</code> files. This is useful if you want to use newer JavaScript features in your <code>.js</code> files and have TypeScript transpile them down to an older target (e.g., ES5), similar to Babel.</p>
+
+                <div class="collapsible-container my-4">
+                    <button class="collapsible-trigger bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-t-md w-full text-left flex justify-between items-center transition-colors duration-150">
+                        <span class="text-lg">Challenges and Best Practices</span>
+                        <i data-lucide="chevron-down" class="collapsible-icon w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="collapsible-content hidden bg-gray-700/60 p-4 rounded-b-md border border-t-0 border-gray-600">
+                        <ul>
+                            <li><strong><code>any</code> type:</strong> When integrating JS, you might encounter many implicit <code>any</code> types. Gradually replace them with specific types or use <code>unknown</code> for better safety.</li>
+                            <li><strong>Declaration file quality:</strong> Not all <code>@types</code> packages are perfect. Sometimes they might be outdated or incomplete.</li>
+                            <li><strong>Module resolution:</strong> Ensure your <code>tsconfig.json</code> settings (<code>module</code>, <code>moduleResolution</code>, <code>baseUrl</code>, <code>paths</code>) are correctly configured for how your project imports modules, especially in mixed TS/JS setups.</li>
+                            <li><strong>Start small:</strong> When migrating a large JS project, start with a small, isolated part of the codebase.</li>
+                            <li><strong>Leverage editor support:</strong> Modern IDEs like VS Code provide excellent TypeScript support, which can greatly help in identifying and fixing type issues during integration.</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <article id="ts-config" class="lesson-content hidden bg-gray-800/50 p-6 rounded-lg shadow-lg backdrop-blur-md mt-8 prose prose-invert max-w-none">
+                <h3 class="text-2xl font-semibold text-blue-300 mb-4">Lesson: Configuration (tsconfig.json)</h3>
+                <p>The <code>tsconfig.json</code> file in the root of a TypeScript project specifies the root files and the compiler options required to compile the project. It's the central place for configuring how the TypeScript compiler (<code>tsc</code>) behaves.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Generating a <code>tsconfig.json</code></h4>
+                <p>You can create a <code>tsconfig.json</code> file manually, or you can generate one using the TypeScript compiler:</p>
+                <pre><code class="language-bash">npx tsc --init</code></pre>
+                <p>This command creates a <code>tsconfig.json</code> file with sensible defaults and comments explaining various options.</p>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Key Sections and Common Options</h4>
+                <p>A <code>tsconfig.json</code> file typically has a <code>compilerOptions</code> section and can also include sections like <code>include</code>, <code>exclude</code>, and <code>extends</code>.</p>
+
+                <p><strong><code>compilerOptions</code>:</strong> This is where most configuration happens.</p>
+                <ul>
+                    <li><strong><code>target</code>:</strong> Specifies the ECMAScript target version for the compiled JavaScript output (e.g., <code>"ES5"</code>, <code>"ES2015"</code>, <code>"ESNext"</code>).
+                        <pre><code class="language-json">"target": "es2016"</code></pre>
+                    </li>
+                    <li><strong><code>module</code>:</strong> Specifies the module system for the output (e.g., <code>"CommonJS"</code>, <code>"ES6"</code>, <code>"AMD"</code>, <code>"UMD"</code>).
+                        <pre><code class="language-json">"module": "commonjs"</code></pre>
+                    </li>
+                    <li><strong><code>outDir</code>:</strong> Redirect output structure to the specified directory.
+                        <pre><code class="language-json">"outDir": "./dist"</code></pre>
+                    </li>
+                    <li><strong><code>rootDir</code>:</strong> Specifies the root directory of input files. Used to control the output directory structure with <code>outDir</code>.
+                        <pre><code class="language-json">"rootDir": "./src"</code></pre>
+                    </li>
+                    <li><strong><code>strict</code>:</strong> Enables all strict type-checking options (<code>noImplicitAny</code>, <code>noImplicitThis</code>, <code>strictNullChecks</code>, <code>strictFunctionTypes</code>, etc.). Highly recommended.
+                        <pre><code class="language-json">"strict": true</code></pre>
+                    </li>
+                    <li><strong><code>noImplicitAny</code>:</strong> Raise error on expressions and declarations with an implied <code>any</code> type.
+                        <pre><code class="language-json">"noImplicitAny": true</code></pre>
+                    </li>
+                    <li><strong><code>strictNullChecks</code>:</strong> When true, <code>null</code> and <code>undefined</code> have their own distinct types and you’ll get a type error if you try to use them where a concrete value is expected.
+                        <pre><code class="language-json">"strictNullChecks": true</code></pre>
+                    </li>
+                    <li><strong><code>esModuleInterop</code>:</strong> Enables compatibility with Babel-emitted ECMAScript modules by creating namespace objects for all imports. Allows default imports from modules with no default export.
+                        <pre><code class="language-json">"esModuleInterop": true</code></pre>
+                    </li>
+                    <li><strong><code>allowJs</code>:</strong> Allow JavaScript files to be compiled.
+                        <pre><code class="language-json">"allowJs": true</code></pre>
+                    </li>
+                    <li><strong><code>checkJs</code>:</strong> Report errors in .js files. Works in conjunction with <code>allowJs</code>.
+                        <pre><code class="language-json">"checkJs": false</code></pre>
+                    </li>
+                    <li><strong><code>sourceMap</code>:</strong> Generates corresponding <code>.map</code> files for debugging.
+                        <pre><code class="language-json">"sourceMap": true</code></pre>
+                    </li>
+                    <li><strong><code>declaration</code>:</strong> Generates corresponding <code>.d.ts</code> files for your library.
+                        <pre><code class="language-json">"declaration": true</code></pre>
+                    </li>
+                    <li><strong><code>lib</code>:</strong> List of library files to be included in the compilation (e.g., <code>["ES2020", "DOM"]</code>). If not specified, defaults based on <code>target</code>.
+                        <pre><code class="language-json">"lib": ["dom", "es2017"]</code></pre>
+                    </li>
+                    <li><strong><code>jsx</code>:</strong> Specifies JSX code generation: <code>"preserve"</code>, <code>"react"</code>, <code>"react-jsx"</code>, <code>"react-jsxdev"</code>.
+                        <pre><code class="language-json">"jsx": "react-jsx"</code></pre>
+                    </li>
+                    <li><strong><code>baseUrl</code> and <code>paths</code>:</strong> For configuring module path aliases.
+                        <pre><code class="language-json">"baseUrl": "./",
+"paths": {
+  "@components/*": ["src/components/*"],
+  "@utils/*": ["src/utils/*"]
+}</code></pre>
+                    </li>
+                    <li><strong><code>experimentalDecorators</code> and <code>emitDecoratorMetadata</code>:</strong> For enabling decorator support.
+                        <pre><code class="language-json">"experimentalDecorators": true,
+"emitDecoratorMetadata": true</code></pre>
+                    </li>
+                </ul>
+
+                <p><strong><code>include</code>, <code>exclude</code>, and <code>files</code>:</strong></p>
+                <p>These top-level properties specify which files are part of the compilation process.</p>
+                <ul>
+                    <li><strong><code>files</code>:</strong> An array of file paths. Only these specific files will be compiled.
+                        <pre><code class="language-json">"files": [
+  "src/main.ts",
+  "src/utils.ts"
+]</code></pre>
+                    </li>
+                    <li><strong><code>include</code>:</strong> An array of glob patterns specifying files to include.
+                        <pre><code class="language-json">"include": [
+  "src/**/*" // All files in src directory and subdirectories
+]</code></pre>
+                    </li>
+                    <li><strong><code>exclude</code>:</strong> An array of glob patterns specifying files to exclude from compilation. Commonly used for <code>node_modules</code>, output directories, etc.
+                        <pre><code class="language-json">"exclude": [
+  "node_modules",
+  "dist",
+  "**/*.spec.ts" // Exclude test files
+]</code></pre>
+                    </li>
+                </ul>
+                <p>If <code>files</code> is specified, <code>include</code> and <code>exclude</code> are ignored. If neither <code>files</code> nor <code>include</code> is specified, the compiler defaults to including all TypeScript files (<code>*.ts</code>, <code>*.tsx</code>, <code>*.d.ts</code>) in the containing directory and subdirectories, except those specified by <code>exclude</code>.</p>
+
+                <p><strong><code>extends</code>:</strong></p>
+                <p>This property allows one <code>tsconfig.json</code> file to inherit configurations from another. This is useful for managing multiple configurations (e.g., base config, dev config, prod config) or for using shared configurations from npm packages.</p>
+                <pre><code class="language-json">// tsconfig.prod.json
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "sourceMap": false,
+    "removeComments": true
+  }
+}</code></pre>
+
+                <h4 class="text-xl font-medium text-blue-200 mt-6 mb-3">Using <code>tsconfig.json</code></h4>
+                <ul>
+                    <li>Running <code>tsc</code> without any input files will compile the project based on the <code>tsconfig.json</code> in the current directory or parent directories.</li>
+                    <li>Running <code>tsc -p ./path/to/tsconfig.json</code> (or <code>--project</code>) allows you to specify a custom path to a tsconfig file.</li>
+                    <li>Many build tools and IDEs (like VS Code, Webpack with ts-loader, Vite) automatically recognize and use <code>tsconfig.json</code>.</li>
+                </ul>
+                <div class="collapsible-container my-4">
+                    <button class="collapsible-trigger bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-t-md w-full text-left flex justify-between items-center transition-colors duration-150">
+                        <span class="text-lg">Best Practices</span>
+                        <i data-lucide="chevron-down" class="collapsible-icon w-5 h-5 transition-transform duration-300"></i>
+                    </button>
+                    <div class="collapsible-content hidden bg-gray-700/60 p-4 rounded-b-md border border-t-0 border-gray-600">
+                        <ul>
+                            <li><strong>Enable <code>strict</code> mode:</strong> This catches many common errors and leads to more robust code.</li>
+                            <li><strong>Keep it versioned:</strong> <code>tsconfig.json</code> should be committed to your version control system.</li>
+                            <li><strong>Understand your target environment:</strong> Set <code>target</code> and <code>module</code> appropriately for where your JavaScript will run.</li>
+                            <li><strong>Use <code>include</code> and <code>exclude</code>:</strong> Be explicit about what files are part of your project to avoid accidentally compiling unwanted files or missing important ones.</li>
+                            <li><strong>Read the official documentation:</strong> The TypeScript handbook has comprehensive documentation on all compiler options.</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- Vite Lesson Placeholders -->
+            <article id="vite-intro" class="lesson-content hidden bg-gray-800/50 p-6 rounded-lg shadow-lg backdrop-blur-md mt-8 prose prose-invert max-w-none">
+                <h3 class="text-2xl font-semibold text-green-300 mb-4">Lesson: Introduction to Vite: What & Why?</h3>
+                <p class="text-gray-300">Detailed content for Introduction to Vite will be added here. Vite is a modern frontend build tool that significantly improves the frontend development experience.</p>
+            </article>
+            <article id="vite-setup" class="lesson-content hidden bg-gray-800/50 p-6 rounded-lg shadow-lg backdrop-blur-md mt-8 prose prose-invert max-w-none">
+                <h3 class="text-2xl font-semibold text-green-300 mb-4">Lesson: Getting Started: Installation & Project Setup</h3>
+                <p class="text-gray-300">Detailed content for Vite Setup & Installation will be added here.</p>
+            </article>
+            
+
+            <!-- React Lesson Placeholders -->
+            <article id="react-intro" class="lesson-content hidden bg-gray-800/50 p-6 rounded-lg shadow-lg backdrop-blur-md mt-8 prose prose-invert max-w-none">
+                <h3 class="text-2xl font-semibold text-yellow-300 mb-4">Lesson: Getting started with React</h3>
+                <p class="text-gray-300">Detailed content for Getting started with React will be added here. React is a JavaScript library for building user interfaces.</p>
+            </article>
+            <article id="react-components" class="lesson-content hidden bg-gray-800/50 p-6 rounded-lg shadow-lg backdrop-blur-md mt-8 prose prose-invert max-w-none">
+                <h3 class="text-2xl font-semibold text-yellow-300 mb-4">Lesson: Componentizing our React app</h3>
+                <p class="text-gray-300">Detailed content for Componentizing our React app will be added here.</p>
+            </article>
+
+        </main>
+
+        <footer class="bg-gray-800 p-4 text-center text-sm text-gray-400 border-t border-gray-700">
+            &copy; <span id="currentYear"></span> E-Learning Platform. All rights reserved.
+        </footer>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
